@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakshi Date | Data Analyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --card-size: 320px;
+            --card-padding: 30px;
+            --radius: 16px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-image {
+            width: var(--card-size);
+            height: var(--card-size);
+            border-radius: var(--radius);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .profile-summary {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 12px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-item:hover i {
+            color: white;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            color: var(--primary);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Uniform Card Style */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: var(--card-padding);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: var(--card-size);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .card-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* Scrollbar Styling */
+        .card-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .card-content::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 3px;
+        }
+
+        .card-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* Experience Card */
+        .experience-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .experience-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: var(--light);
+            padding: 4px 12px;
+            border-radius: 15px;
+        }
+
+        .experience-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Skills Card */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category-title i {
+            color: var(--primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: var(--light);
+            color: var(--dark);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Projects Card */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-item {
+            padding: 20px;
+            background: var(--light);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .project-item:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: white;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 2px solid var(--light-gray);
+        }
+
+        /* Education Card */
+        .education-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .education-item {
+            padding: 20px;
+            background: var(--light);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .education-item:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .education-degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .education-institution {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .education-details {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .education-date {
+            color: var(--gray);
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            display: inline-block;
+            border: 2px solid var(--light-gray);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .footer-statement {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .footer-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-image {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .profile-name {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="profile-image" id="profileImageContainer">
+                <div class="spinner"></div>
+            </div>
+            
+            <div class="profile-info">
+                <h1 class="profile-name" id="profileName">Sakshi Date</h1>
+                <h2 class="profile-title">Data Analyst</h2>
+                
+                <div class="profile-summary">
+                    Aspiring Data Analyst with expertise in Python, SQL, Power BI, and data analytics tools. 
+                    Experienced in data analysis, visualization, and predictive modeling through internships and projects. 
+                    Skilled in cleaning, processing, and interpreting complex datasets to generate actionable insights.
+                </div>
+                
+                <div class="contact-info">
+                    <a href="mailto:sakshidateaz0404@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>sakshidateaz0404@gmail.com</span>
+                    </a>
+                    <a href="tel:+918928133538" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 89281 33538</span>
+                    </a>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Mumbai, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Bachelor of Engineering (Pursuing)</span>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/sakshiDate0404" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sakshi-date-366674371" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:sakshidateaz0404@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="main-grid">
+            <!-- Experience Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="card-title">Experience</h3>
+                </div>
+                <div class="card-content">
+                    <div class="experience-item">
+                        <h4 class="experience-title">Deloitte Virtual Internship</h4>
+                        <span class="experience-date">October 2025</span>
+                        <div class="experience-description">
+                            End-to-end data analytics process, business insights, strategic recommendations.
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h4 class="experience-title">Tata GenAI Data Analytics Internship</h4>
+                        <span class="experience-date">October 2025</span>
+                        <div class="experience-description">
+                            Data quality assessment, analytics solutions evaluation, project oversight.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="card-title">Skills</h3>
+                </div>
+                <div class="card-content">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-laptop-code"></i>
+                                Programming
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">R</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-chart-bar"></i>
+                                Analysis
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">NumPy</span>
+                                <span class="skill-tag">Excel</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-eye"></i>
+                                Visualization
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Power BI</span>
+                                <span class="skill-tag">Tableau</span>
+                                <span class="skill-tag">Matplotlib</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-database"></i>
+                                Databases
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">Git</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="card-title">Projects</h3>
+                </div>
+                <div class="card-content">
+                    <div class="projects-grid">
+                        <div class="project-item">
+                            <h4 class="project-title">Sales Data Analysis</h4>
+                            <p class="project-description">
+                                MySQL data modeling, normalization, and stored logic implementation.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Data Modeling</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-item">
+                            <h4 class="project-title">UPI Banking Application</h4>
+                            <p class="project-description">
+                                Python banking platform with authentication and 10+ financial features.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Gradio</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-item">
+                            <h4 class="project-title">E-commerce Dashboard</h4>
+                            <p class="project-description">
+                                Interactive Power BI dashboard with DAX functions and KPI calculations.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Power BI</span>
+                                <span class="tech-tag">DAX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="card-title">Education</h3>
+                </div>
+                <div class="card-content">
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <div class="education-degree">Bachelor of Engineering</div>
+                            <div class="education-institution">University of Mumbai</div>
+                            <div class="education-details">Currently Pursuing</div>
+                            <div class="education-date">2022 - 2026</div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-degree">Masters in Data Science & AI</div>
+                            <div class="education-institution">IT Vedant Education</div>
+                            <div class="education-details">Python, Tableau, MySQL, Power BI</div>
+                            <div class="education-date">Aug 2025 - Present</div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-degree">HSC (Higher Secondary)</div>
+                            <div class="education-institution">Maharashtra State Board</div>
+                            <div class="education-details">Score: 82%</div>
+                            <div class="education-date">2020 - 2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Skills Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="card-title">Tools & Technologies</h3>
+                </div>
+                <div class="card-content">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-cogs"></i>
+                                ML & Analytics
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">Seaborn</span>
+                                <span class="skill-tag">Plotly</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-server"></i>
+                                Development
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">VS Code</span>
+                                <span class="skill-tag">Jupyter</span>
+                                <span class="skill-tag">Google Colab</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-brain"></i>
+                                ML Algorithms
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Linear Regression</span>
+                                <span class="skill-tag">Logistic Regression</span>
+                                <span class="skill-tag">Decision Trees</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="skill-category-title">
+                                <i class="fas fa-database"></i>
+                                Data Management
+                            </h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">Anaconda</span>
+                                <span class="skill-tag">Data Wrangling</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="card-title">Coursework</h3>
+                </div>
+                <div class="card-content">
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <div class="education-degree">Data Science Specialization</div>
+                            <div class="education-institution">IT Vedant Education</div>
+                            <div class="education-details">Python, Tableau, MySQL, Power BI, Excel</div>
+                            <div class="education-date">Ongoing</div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-degree">Machine Learning</div>
+                            <div class="education-details">Linear Regression, Logistic Regression, Decision Trees, Random Forest</div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-degree">Data Visualization</div>
+                            <div class="education-details">Power BI, Tableau, Matplotlib, Seaborn, Plotly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-statement">
+                "I want to use my skills in data analysis and programming to help companies make better decisions, 
+                solve problems, and improve results."
+            </p>
+            
+            <div class="footer-links">
+                <a href="https://github.com/sakshiDate0404" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/sakshi-date-366674371" target="_blank" class="footer-link">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+                <a href="mailto:sakshidateaz0404@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </a>
+                <a href="tel:+918928133538" class="footer-link">
+                    <i class="fas fa-phone"></i>
+                    Phone
+                </a>
+            </div>
+            
+            <p class="copyright">
+                © 2023 Sakshi Date. All rights reserved.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Fetch GitHub Profile Picture
+        async function loadGitHubProfile() {
+            const username = 'sakshiDate0404';
+            const profileContainer = document.getElementById('profileImageContainer');
+            
+            try {
+                // Try to fetch from GitHub API
+                const response = await fetch(`https://api.github.com/users/${username}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.avatar_url) {
+                        // Create image element
+                        const img = document.createElement('img');
+                        img.src = `${data.avatar_url}&s=400`;
+                        img.alt = data.name || 'Sakshi Date';
+                        
+                        // Clear container and add image
+                        profileContainer.innerHTML = '';
+                        profileContainer.appendChild(img);
+                        
+                        // Update name if available
+                        if (data.name) {
+                            document.getElementById('profileName').textContent = data.name;
+                        }
+                        
+                        // Add fade in effect
+                        img.style.opacity = '0';
+                        setTimeout(() => {
+                            img.style.transition = 'opacity 0.5s ease';
+                            img.style.opacity = '1';
+                        }, 100);
+                        
+                        return;
+                    }
+                }
+                
+                throw new Error('No avatar available');
+                
+            } catch (error) {
+                // Create fallback with initials
+                profileContainer.innerHTML = 'SD';
+                profileContainer.style.fontSize = '4rem';
+                profileContainer.style.display = 'flex';
+                profileContainer.style.alignItems = 'center';
+                profileContainer.style.justifyContent = 'center';
+            }
+        }
+
+        // Add hover effects to all cards
+        function setupCardAnimations() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0)';
+                card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+            });
+        }
+
+        // Add copy email functionality
+        function setupEmailCopy() {
+            const emailLinks = document.querySelectorAll('a[href^="mailto"]');
+            
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (navigator.clipboard) {
+                        e.preventDefault();
+                        const email = 'sakshidateaz0404@gmail.com';
+                        
+                        navigator.clipboard.writeText(email).then(() => {
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                            }, 2000);
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load GitHub profile
+            loadGitHubProfile();
+            
+            // Setup animations
+            setupCardAnimations();
+            
+            // Setup email copy
+            setupEmailCopy();
+            
+            // Add scroll animation for cards
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
